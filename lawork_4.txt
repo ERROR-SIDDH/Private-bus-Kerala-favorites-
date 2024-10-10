@@ -1,0 +1,11 @@
+%%Volume of solid 
+clc
+clear all
+close all
+syms x 
+f=input('ENTER THE FUNCTION ')
+fL=input('Enter the interval on which the functional is determined: ');
+yr=input('Enter the axis of rotation y=c (enter only c value): ');
+iL=input('Enter the integration limts: ');
+Volume=pi*int((f-yr)^2,iL(1),iL(2));
+sprintf('Volume is %3f ', double(Volume))
