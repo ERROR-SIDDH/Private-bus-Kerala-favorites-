@@ -1,0 +1,47 @@
+Dataflow Modeling:
+module fulladddataflow(a, b, cin, sum, carry);
+input a;
+input b;
+input cin;
+output sum;
+output carry;
+assign sum=a^b^cin;
+assign carry=(a & b) | (b & cin) | (cin & a);
+endmodule
+Behavioral Modeling:
+module fuladbehavioral(a, b, c, sum, carry);
+input a;
+input b;
+input c;
+output sum;
+output carry;
+reg sum,carry;
+reg t1,t2,t3;
+always @ (a or b or c) begin
+sum = (a^b)^c;
+t1=a & b;
+t2=b & c;
+t3=a & c;
+carry=(t1 | t2) | t3;
+end
+endmodule \
+
+
+Structural Modeling:
+module fa_struct(a, b, c, sum, carry);
+input a;
+input b;
+input c;
+output sum;
+output carry;
+wire p,q,r,s;
+xor
+x1(p,a,b),
+x2(sum,p,c);
+and
+a1(q,a,b),
+a2(r,b,c),
+a3(s,a,c);
+or
+o1(carry,q,r,s);
+endmodule 

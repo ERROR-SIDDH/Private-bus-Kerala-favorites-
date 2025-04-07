@@ -1,0 +1,23 @@
+module full_subtractor(input a,b,c,output reg diff,cout);
+always @(*)begin
+diff =a^b^c;
+cout=(~a&b)|(b&c)|(c&~a);
+end
+endmodule
+module tbfullsub ;
+reg A,B,C;
+wire DIFF , COUT ;
+full_subtractor fs(.a(A),.b(B),.diff(DIFF),.c(C),.cout(COUT));
+initial begin
+A=1'b0;
+B=1'b0;
+C=1'b0;
+#16 $finish;
+end
+always #2 A=~A;
+always #4 B=~B;
+always #8 C=~C;
+always @(DIFF or COUT)
+$display("time =%0t \tINPUT VALUES:\t A=%b B=%b C=%b \t output value
+DIFF=%b COUT =%b",$time,A,B,C,DIFF,COUT);
+endmodule

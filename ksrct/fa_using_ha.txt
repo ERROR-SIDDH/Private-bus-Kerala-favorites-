@@ -1,0 +1,23 @@
+VERILOG SOURCE CODE:
+Structural Modeling:
+module fa_2ha(a, b, c, sum, carry);
+input a;
+input b;
+input c;
+output sum;
+output carry;
+wire p,q,r;
+ha_dataflow
+h1(a,b,p,q),
+h2(p,c,sum,r);
+or
+o1(carry,q,r);
+endmodule
+module ha_dataflow(a, b, s, ca);
+input a;
+input b;
+output s;
+output ca;
+assign#2 s=a^b;
+assign#2 ca=a&b;
+endmodule 

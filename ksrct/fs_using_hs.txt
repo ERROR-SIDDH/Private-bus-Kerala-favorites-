@@ -1,0 +1,25 @@
+VERILOG SOURCE CODE:
+Structural Modeling:
+module fs_2hs(a, b, c, diff, borrow);
+input a;
+input b;
+input c;
+output diff;
+output borrow;
+wire p,q,r; 
+hs_dataflow
+h1(a,b,p,q),
+h2(p,c,diff,r);
+or
+o1(borrow,q,r);
+endmodule
+module hs_dataflow(a, b, dif, bor);
+input a;
+input b;
+output dif;
+output bor;
+wire abar;
+assign#3 abar=~a;
+assign#3 dif=a^b;
+assign#3 bor=b&abar;
+endmodule

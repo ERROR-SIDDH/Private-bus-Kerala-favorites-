@@ -1,0 +1,35 @@
+VERILOG SOURCE CODE:
+
+Dataflow Modeling:
+module ha_dataflow(a, b, s, ca);
+input a;
+input b;
+output s;
+output ca;
+assign#2 s=a^b;
+assign#2 ca=a&b;
+endmodule
+Behavioral Modeling:
+module ha_behv(a, b, s, ca);
+input a;
+input b;
+output s;
+output ca;
+reg s,ca;
+always @ (a or b) begin
+s=a^b;
+ca=a&b;
+endmodule
+
+Structural Modeling:
+module ha_struct(a, b, s, ca);
+input a;
+input b;
+output s;
+output ca;
+xor
+x1(s,a,b);
+and
+a1(ca,a,b);
+endmodule 
+

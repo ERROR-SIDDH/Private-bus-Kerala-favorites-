@@ -1,0 +1,28 @@
+Behavioral Modeling:
+module hs_behv(a, b, dif, bor); 
+input a;
+input b;
+output dif;
+output bor;
+reg dif,bor;
+reg abar;
+always@(a or b) begin
+abar=~a;
+dif=a^b;
+bor=b&abar;
+end
+endmodule
+Structural Modeling:
+module hs_struct(a, b, dif, bor);
+input a;
+input b;
+output dif;
+output bor;
+wire abar;
+xor
+x1(dif,a,b);
+not
+n1(abar,a);
+and
+a1(bor,abar,b);
+endmodule 

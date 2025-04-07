@@ -1,0 +1,54 @@
+VERILOG SOURCE CODE:
+Dataflow Modeling:
+module fulsubdataflow(a, b, cin, diff, borrow);
+input a;
+input b;
+input cin;
+output diff;
+output borrow;
+wire abar;
+assign abar= ~ a;
+assign diff=a^b^cin;
+assign borrow=(abar & b) | (b & cin) |(cin & abar);
+endmodule
+
+Behavioral Modeling:
+module fulsubbehavioral(a, b, cin, diff, borrow);
+input a;
+input b;
+input cin;
+output diff;
+output borrow;
+reg t1,t2,t3;
+reg diff,borrow;
+reg abar;
+always @ (a or b or cin) begin
+abar= ~ a;
+diff = (a^b)^cin;
+t1=abar & b;
+t2=b & cin;
+t3=cin & abar;
+borrow=(t1 | t2) | t3;
+end
+endmodule 
+
+Structural Modeling: 
+module fs_struct(a, b, c, diff, borrow);
+input a;
+input b;
+input c;
+output diff;
+output borrow;
+wire abar,p,q,r,s;
+not
+n1(abar,a);
+xor
+x1(p,a,b),
+x2(diff,p,c);
+and
+a1(q,abar,b),
+a2(r,abar,c),
+a3(s,a,c);
+or
+o1(borrow,q,r,s);
+endmodule 

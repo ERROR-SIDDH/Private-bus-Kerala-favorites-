@@ -1,0 +1,23 @@
+module full_adder(input a,b,c,output reg sum,cout);
+always @(*)begin
+sum=a^b^c;
+cout=(a&b)|(b&c)|(c&a);
+end
+endmodule
+module tbfulladder ;
+reg A,B,C;
+wire SUM, COUT ;
+full_adder fa(.a(A),.b(B),.sum(SUM),.c(C),.cout(COUT));
+initial begin
+A=1'b0;
+B=1'b0;
+C=1'b0;
+#16 $finish;
+end
+always #2 A=~A;
+always #4 B=~B;
+always #8 C=~C;
+always @(SUM or COUT)
+$display("time =%0t \tINPUT VALUES:\t A=%b B=%b C=%b \t output value
+SUM=%b COUT =%b",$time,A,B,C,SUM,COUT);
+endmodule
